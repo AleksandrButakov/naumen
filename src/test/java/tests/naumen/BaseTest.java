@@ -1,5 +1,6 @@
 package tests.naumen;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import config.BrowserConfig;
 import config.RemoteDriverConfig;
@@ -25,6 +26,7 @@ class BaseTest {
     @BeforeAll
     static void beforeAll() throws MalformedURLException {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        RemoteDriverConfig remoteDriverConfig = ConfigFactory.create(RemoteDriverConfig.class, System.getProperties());
 
         WebDriverConfig webDriverConfig = ConfigFactory.create(WebDriverConfig.class, getProperties());
         baseUrl = webDriverConfig.getWebDriverBaseUrl();
@@ -34,42 +36,55 @@ class BaseTest {
         browserVersion = browserConfig.getBrowserVersion();
         browserSize = browserConfig.getBrowserSize();
 
-        RemoteDriverConfig remoteDriverConfig = ConfigFactory.create(RemoteDriverConfig.class, System.getProperties());
-        remote = remoteDriverConfig.getRemoteDriver();
+        if (remoteDriverConfig.isRemoteDriver()) {
+            remote = remoteDriverConfig.getRemoteDriver();
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("selenoid:options", new HashMap<String, Object>() {{
-            /* How to add test badge */
-            put("name", "My tests https://smartdeal.pro");
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("selenoid:options", new HashMap<String, Object>() {{
+                /* How to add test badge */
+                put("name", "My tests https://smartdeal.pro");
 
-            /* How to set session timeout */
-            put("sessionTimeout", "15m");
+                /* How to set session timeout */
+                put("sessionTimeout", "15m");
 
-            /* How to set timezone */
-            put("env", new ArrayList<String>() {{
-                add("TZ=UTC");
+                /* How to set timezone */
+                put("env", new ArrayList<String>() {{
+                    add("TZ=UTC");
+                }});
+
+                put("console", true);
+
+                /* How to enableVNC */
+                put("enableVNC", true);
+
+                /* How to enable video recording */
+                put("enableVideo", true);
+
             }});
+            browserCapabilities = capabilities;
+        }
 
-            put("console", true);
-
-            /* How to enableVNC */
-            put("enableVNC", true);
-
-            /* How to enable video recording */
-            put("enableVideo", true);
-
-        }});
-        browserCapabilities = capabilities;
     }
 
     @AfterEach
     public void afterEach() {
-//        String sessionId = sessionId().toString(); //getSessionId();
-//        attachScreenshot("Last screenshot");
-//        attachPageSource();
-//        browserConsoleLogs();
-//        attachVideo(sessionId);
-        closeWebDriver();
+        RemoteDriverConfig remoteDriverConfig = ConfigFactory.create(RemoteDriverConfig.class, System.getProperties());
+
+        if (remoteDriverConfig.isRemoteDriver()) {
+            String sessionId = sessionId().toString(); //getSessionId();
+
+            /* TODO this attachments needs when program run in Jenkins
+            attachScreenshot("Last screenshot");
+            attachPageSource();
+            browserConsoleLogs();
+            attachVideo(sessionId);
+            */
+
+            closeWebDriver();
+        } else {
+            closeWebDriver();
+        }
+
     }
 
 }
