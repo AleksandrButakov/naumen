@@ -15,25 +15,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.codeborne.selenide.Configuration.*;
-import static com.codeborne.selenide.Selenide.*;
-import static helpers.AllureAttachments.*;
+import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.sessionId;
+import static helpers.AllureAttachments.*;
 import static java.lang.System.*;
 
-class TestBase {
-
-    /*
-        @BeforeEach
-    public void startDriver() {
-        driver = new WebDriverProvider().get();
-    }
-     */
+class BaseTest {
 
     @BeforeAll
     static void beforeAll() throws MalformedURLException {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-
-        //DriverSettings.configure();
 
         WebDriverConfig webDriverConfig = ConfigFactory.create(WebDriverConfig.class, getProperties());
         baseUrl = webDriverConfig.getWebDriverBaseUrl();
@@ -46,16 +37,10 @@ class TestBase {
         RemoteDriverConfig remoteDriverConfig = ConfigFactory.create(RemoteDriverConfig.class, System.getProperties());
         remote = remoteDriverConfig.getRemoteDriver();
 
-//        baseUrl = "https://smartdeal.pro";
-//        browser = getProperty("browser", "chrome");
-//        browserVersion = getProperty("browserVersion", "112.0");
-//        browserSize = "1920x1080";
-//        remote = "http://62.113.108.218:4444/wd/hub";
-
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", new HashMap<String, Object>() {{
             /* How to add test badge */
-            put("name", "My tests https://naumen.ru");
+            put("name", "My tests https://smartdeal.pro");
 
             /* How to set session timeout */
             put("sessionTimeout", "15m");
@@ -79,12 +64,12 @@ class TestBase {
 
     @AfterEach
     public void afterEach() {
-        String sessionId = sessionId().toString(); //getSessionId();
-        attachScreenshot("Last screenshot");
-        attachPageSource();
-        // browserConsoleLogs();
+//        String sessionId = sessionId().toString(); //getSessionId();
+//        attachScreenshot("Last screenshot");
+//        attachPageSource();
+//        browserConsoleLogs();
+//        attachVideo(sessionId);
         closeWebDriver();
-        attachVideo(sessionId);
     }
 
 }

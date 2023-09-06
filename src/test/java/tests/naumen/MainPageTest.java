@@ -1,10 +1,8 @@
 package tests.naumen;
 
-import com.codeborne.selenide.Configuration;
-import com.google.common.eventbus.AllowConcurrentEvents;
-import org.checkerframework.checker.units.qual.Current;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.parallel.Execution;
+import pages.MainPage;
+import pages.ProductsPage;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
@@ -12,22 +10,38 @@ import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
-import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
 
-public class TestMainPage extends TestBase {
+public class MainPageTest extends BaseTest {
+
+    MainPage mainPage = new MainPage();
+    ProductsPage productsPage = new ProductsPage();
+
+    @Test
+    @Tag("ui")
+    @Disabled
+    @DisplayName("Проверка в меню работы ссылок")
+    void checkingLinksMenu() {
+        mainPage.openPage()
+                .clickMenuProducts();
+
+        //productsPage.chec
+
+    }
+
+
+
+
+
+    // checking main menu
+//    @Disabled
     @Test
     // @Tag("ui")
-    @DisplayName("Проверка в меню ссылки 'Продукты'")
-    void checkingTheButtonForServices() {
+    @DisplayName("Проверка в меню работы ссылок")
+    void checkingLinksMenu2() {
         step("Checking the button for services", () -> {
             open(baseUrl);
             $$(".link").findBy(text("Продукты")).click();
-            //$$(".tn-atom").findBy(text("Кейсы")).click();
-            //$$(".tn-atom").findBy(text("Кейсы SmartDeal")).click();
-            sleep(5000);
 
-//            $$(".tn-atom").findBy(text("Треугольная сделка"))
-//                    .shouldHave(text("Треугольная сделка"));
         });
     }
 

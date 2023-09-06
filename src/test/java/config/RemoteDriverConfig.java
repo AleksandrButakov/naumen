@@ -8,6 +8,10 @@ import org.aeonbits.owner.Config;
 
 public interface RemoteDriverConfig extends Config {
 
+    @Key("isRemote.driver")
+    Boolean webIsRemoteDriver();
+
+
     @Key("remote.driver")
     String getRemoteDriver();
 
