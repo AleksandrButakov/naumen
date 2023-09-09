@@ -1,11 +1,11 @@
 package tests.naumen;
 
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.WebElement;
 import pages.MainPage;
 import pages.ProductsPage;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -40,7 +40,10 @@ public class MainPageTest extends BaseTest {
     void checkingLinksMenu2() {
         step("Checking the button for services", () -> {
             open(baseUrl);
-            $$(".link").findBy(text("Продукты")).click();
+            $("#APjFqb").setValue("Naumen");
+            $("#APjFqb").pressEnter();
+
+            sleep(2000);
 
         });
     }

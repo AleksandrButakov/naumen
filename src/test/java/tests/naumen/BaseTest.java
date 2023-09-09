@@ -1,8 +1,8 @@
 package tests.naumen;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import config.BrowserConfig;
+import config.BrowserLocalConfig;
+import config.BrowserRemoteConfig;
 import config.RemoteDriverConfig;
 import config.WebDriverConfig;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -26,17 +26,21 @@ class BaseTest {
     @BeforeAll
     static void beforeAll() throws MalformedURLException {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        RemoteDriverConfig remoteDriverConfig = ConfigFactory.create(RemoteDriverConfig.class, System.getProperties());
 
+        BrowserLocalConfig browserLocalConfig = ConfigFactory.create(BrowserLocalConfig.class, getProperties());
+        BrowserRemoteConfig browserRemoteConfig = ConfigFactory.create(BrowserRemoteConfig.class, getProperties());
+        RemoteDriverConfig remoteDriverConfig = ConfigFactory.create(RemoteDriverConfig.class, getProperties());
         WebDriverConfig webDriverConfig = ConfigFactory.create(WebDriverConfig.class, getProperties());
+
         baseUrl = webDriverConfig.getWebDriverBaseUrl();
 
-        BrowserConfig browserConfig = ConfigFactory.create(BrowserConfig.class, System.getProperties());
-        browser = browserConfig.getBrowserType();
-        browserVersion = browserConfig.getBrowserVersion();
-        browserSize = browserConfig.getBrowserSize();
-
         if (remoteDriverConfig.isRemoteDriver()) {
+            // starting the remote driver
+
+            browser = browserRemoteConfig.getBrowserRemoteType();
+            browserVersion = browserRemoteConfig.getBrowserRemoteVersion();
+            browserSize = browserRemoteConfig.getBrowserRemoteSize();
+
             remote = remoteDriverConfig.getRemoteDriver();
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -62,27 +66,39 @@ class BaseTest {
 
             }});
             browserCapabilities = capabilities;
+
+        } else {
+            // starting the local driver
+
+            browser = browserLocalConfig.getBrowserLocalType();
+            browserVersion = browserLocalConfig.getBrowserLocalVersion();
+            browserSize = browserLocalConfig.getBrowserLocalSize();
+
         }
 
     }
 
     @AfterEach
     public void afterEach() {
-        RemoteDriverConfig remoteDriverConfig = ConfigFactory.create(RemoteDriverConfig.class, System.getProperties());
+        RemoteDriverConfig remoteDriverConfig = ConfigFactory.create(RemoteDriverConfig.class, getProperties());
 
         if (remoteDriverConfig.isRemoteDriver()) {
+            // starting the remote driver
             String sessionId = sessionId().toString(); //getSessionId();
 
-            /* TODO this attachments needs when program run in Jenkins
+            /* TODO this attachments needs when program run in Jenkins */
             attachScreenshot("Last screenshot");
             attachPageSource();
             browserConsoleLogs();
             attachVideo(sessionId);
-            */
 
             closeWebDriver();
+
         } else {
+            // starting the local driver
+
             closeWebDriver();
+
         }
 
     }
