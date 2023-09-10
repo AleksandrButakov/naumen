@@ -3,11 +3,7 @@ package tests.naumen;
 import org.junit.jupiter.api.*;
 import pages.*;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Configuration.*;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-import static io.qameta.allure.Allure.step;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class MainPageTest extends BaseTest {
 
@@ -88,7 +84,13 @@ public class MainPageTest extends BaseTest {
                 .clickCareerMenu();
         careerPage
                 .checkingPageLoadingCareer();
-
     }
+
+    @Test
+    @DisplayName("Ложный тест для красивой диаграммы")
+    void falseTest() {
+        assertThat(false);
+    }
+
 
 }

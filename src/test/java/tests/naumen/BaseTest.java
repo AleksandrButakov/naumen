@@ -1,7 +1,5 @@
 package tests.naumen;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.SelectorMode;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import config.BrowserLocalConfig;
 import config.BrowserRemoteConfig;
@@ -13,15 +11,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import io.qameta.allure.Owner;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.sessionId;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 
 import static helpers.AllureAttachments.*;
 import static java.lang.System.*;
