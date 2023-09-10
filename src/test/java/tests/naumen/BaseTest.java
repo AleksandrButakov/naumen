@@ -41,7 +41,6 @@ public class BaseTest {
 
         if (remoteDriverConfig.isRemoteDriver()) {
             // starting the remote driver
-
             browser = browserRemoteConfig.getBrowserRemoteType();
             browserVersion = browserRemoteConfig.getBrowserRemoteVersion();
             browserSize = browserRemoteConfig.getBrowserRemoteSize();
@@ -77,28 +76,17 @@ public class BaseTest {
             browser = browserLocalConfig.getBrowserLocalType();
             browserVersion = browserLocalConfig.getBrowserLocalVersion();
             browserSize = browserLocalConfig.getBrowserLocalSize();
-
         }
     }
 
     @AfterEach
     public void afterEach() {
         RemoteDriverConfig remoteDriverConfig = ConfigFactory.create(RemoteDriverConfig.class, getProperties());
-
-//        String sessionId = sessionId().toString(); //getSessionId();
-//        attachScreenshot("Last screenshot");
-//        attachPageSource();
-//        // browserConsoleLogs();
-//        closeWebDriver();
-//        attachVideo(sessionId);
-
-
         if (remoteDriverConfig.isRemoteDriver()) {
             // starting the remote driver
             String sessionId = sessionId().toString(); //getSessionId();
             attachScreenshot("Last screenshot");
             attachPageSource();
-            //browserConsoleLogs();
             closeWebDriver();
             attachVideo(sessionId);
         } else {

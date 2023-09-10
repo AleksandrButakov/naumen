@@ -9,8 +9,8 @@ import static com.codeborne.selenide.Selenide.$$;
 public class CareerPage {
 
     private final SelenideElement
-    button_vacancy = $$(".btn btn--default--full mr-3 mb-2").findBy(text("Смотреть вакансии")),
-    button_internship = $$("btn btn--default").findBy(text("Выбрать стажировку"));
+    button_vacancy = $$(".btn").findBy(text("Смотреть вакансии")),
+    button_internship = $$("btn").findBy(text("Выбрать стажировку"));
 
     public void checkingPageLoadingCareer() {
         button_vacancy.shouldBe(visible);
