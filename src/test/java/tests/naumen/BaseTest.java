@@ -71,29 +71,42 @@ public class BaseTest {
 
             }});
             browserCapabilities = capabilities;
+
         } else {
             // starting the local driver
             browser = browserLocalConfig.getBrowserLocalType();
             browserVersion = browserLocalConfig.getBrowserLocalVersion();
             browserSize = browserLocalConfig.getBrowserLocalSize();
+
         }
     }
 
     @AfterEach
     public void afterEach() {
-        RemoteDriverConfig remoteDriverConfig = ConfigFactory.create(RemoteDriverConfig.class, getProperties());
-        if (remoteDriverConfig.isRemoteDriver()) {
-            // starting the remote driver
-            String sessionId = sessionId().toString(); //getSessionId();
-            attachScreenshot("Last screenshot");
-            attachPageSource();
-            browserConsoleLogs();
-            attachVideo(sessionId);
-            closeWebDriver();
-        } else {
-            // starting the local driver
-            closeWebDriver();
-        }
+//        RemoteDriverConfig remoteDriverConfig = ConfigFactory.create(RemoteDriverConfig.class, getProperties());
+
+        String sessionId = sessionId().toString(); //getSessionId();
+        attachScreenshot("Last screenshot");
+        attachPageSource();
+        // browserConsoleLogs();
+        closeWebDriver();
+        attachVideo(sessionId);
+
+
+//        if (remoteDriverConfig.isRemoteDriver()) {
+//            // starting the remote driver
+//            String sessionId = sessionId().toString(); //getSessionId();
+//            attachScreenshot("Last screenshot");
+//            attachPageSource();
+//            browserConsoleLogs();
+//            attachVideo(sessionId);
+//            closeWebDriver();
+//
+//        } else {
+//            // starting the local driver
+//            closeWebDriver();
+//
+//        }
     }
 
 }
