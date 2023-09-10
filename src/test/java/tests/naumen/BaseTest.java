@@ -98,7 +98,7 @@ public class BaseTest {
             String sessionId = sessionId().toString(); //getSessionId();
             attachScreenshot("Last screenshot");
             attachPageSource();
-            browserConsoleLogs();
+            //browserConsoleLogs();
             closeWebDriver();
             attachVideo(sessionId);
         } else {
