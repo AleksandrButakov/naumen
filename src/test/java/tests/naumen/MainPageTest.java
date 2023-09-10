@@ -87,10 +87,16 @@ public class MainPageTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Ложный тест для красивой диаграммы")
+    @DisplayName("Ложный тест для отображения на диаграмме")
     void falseTest() {
         assertThat(false);
     }
 
+    @Test
+    @Disabled
+    @DisplayName("@Disable тест для отображения на диаграмме")
+    void falseDisableTest() {
+        assertThat(false);
+    }
 
 }
