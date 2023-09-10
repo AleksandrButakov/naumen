@@ -83,30 +83,28 @@ public class BaseTest {
 
     @AfterEach
     public void afterEach() {
-//        RemoteDriverConfig remoteDriverConfig = ConfigFactory.create(RemoteDriverConfig.class, getProperties());
+        RemoteDriverConfig remoteDriverConfig = ConfigFactory.create(RemoteDriverConfig.class, getProperties());
 
-        String sessionId = sessionId().toString(); //getSessionId();
-        attachScreenshot("Last screenshot");
-        attachPageSource();
-        // browserConsoleLogs();
-        closeWebDriver();
-        attachVideo(sessionId);
+//        String sessionId = sessionId().toString(); //getSessionId();
+//        attachScreenshot("Last screenshot");
+//        attachPageSource();
+//        // browserConsoleLogs();
+//        closeWebDriver();
+//        attachVideo(sessionId);
 
 
-//        if (remoteDriverConfig.isRemoteDriver()) {
-//            // starting the remote driver
-//            String sessionId = sessionId().toString(); //getSessionId();
-//            attachScreenshot("Last screenshot");
-//            attachPageSource();
-//            browserConsoleLogs();
-//            attachVideo(sessionId);
-//            closeWebDriver();
-//
-//        } else {
-//            // starting the local driver
-//            closeWebDriver();
-//
-//        }
+        if (remoteDriverConfig.isRemoteDriver()) {
+            // starting the remote driver
+            String sessionId = sessionId().toString(); //getSessionId();
+            attachScreenshot("Last screenshot");
+            attachPageSource();
+            browserConsoleLogs();
+            closeWebDriver();
+            attachVideo(sessionId);
+        } else {
+            // starting the local driver
+            closeWebDriver();
+        }
     }
 
 }
