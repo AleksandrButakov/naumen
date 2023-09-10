@@ -1,9 +1,7 @@
 package tests.naumen;
 
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebElement;
-import pages.MainPage;
-import pages.ProductsPage;
+import pages.*;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Configuration.*;
@@ -15,176 +13,82 @@ public class MainPageTest extends BaseTest {
 
     MainPage mainPage = new MainPage();
     ProductsPage productsPage = new ProductsPage();
+    ServicesPage servicesPage = new ServicesPage();
+    ClientsPage clientsPage = new ClientsPage();
+    PartnersPage partnersPage = new PartnersPage();
+    AboutPage aboutPage = new AboutPage();
+    PressCenterPage pressCenterPage = new PressCenterPage();
+    CareerPage careerPage = new CareerPage();
 
     @Test
     @Tag("ui")
-    @Disabled
-    @DisplayName("Проверка в меню работы ссылок")
-    void checkingLinksMenu() {
+    @DisplayName("Проверка в меню ссылки 'Продукты'")
+    void checkingLinkMenuProducts() {
         mainPage.openPage()
-                .clickMenuProducts();
-
-        //productsPage.chec
-
+                .clickProductsMenu();
+        productsPage
+                .checkingPageLoadingProducts();
     }
 
-
-
-
-
-    // checking main menu
-//    @Disabled
-    @Test
-    // @Tag("ui")
-    @DisplayName("Проверка в меню работы ссылок")
-    void checkingLinksMenu2() {
-        step("Checking the button for services", () -> {
-            open(baseUrl);
-            $("#APjFqb").setValue("Naumen");
-            $("#APjFqb").pressEnter();
-
-            sleep(2000);
-
-        });
-    }
-
-    // !!!!!!!!!!!!!!!!
-    @Disabled
     @Test
     @Tag("ui")
-    @DisplayName("Проверка кнопки 'Застройщикам'")
-    void checkingTheButtonForDevelopers() {
-        step("Checking the button for developers", () -> {
-            open(baseUrl);
-            $$(".tn-atom").findBy(text("Застройщикам")).click();
-            $$(".tn-atom").findBy(text("Мы предлагаем"))
-                    .shouldHave(text("Мы предлагаем"));
-        });
+    @DisplayName("Проверка в меню ссылки 'Услуги'")
+    void checkingLinkMenuServices() {
+        mainPage.openPage()
+                .clickServicesMenu();
+        servicesPage
+                .checkingPageLoadingServices();
     }
 
-    // !!!!!!!!!!!!!!!!
-    @Disabled
     @Test
     @Tag("ui")
-    @DisplayName("Проверка кнопки 'Получить консультацию'")
-    void checkingTheGetAdviceButton() {
-        step("Checking the button for developers", () -> {
-            open(baseUrl);
-            $$(".tn-atom").findBy(text("Получить консультацию")).click();
-            $$(".tn-atom").findBy(text("Получить консультацию"))
-                    .shouldHave(text("Получить консультацию"));
-        });
+    @DisplayName("Проверка в меню ссылки 'Клиенты'")
+    void checkingLinkMenuClients() {
+        mainPage.openPage()
+                .clickClientsMenu();
+        clientsPage
+                .checkingPageLoadingClients();
     }
 
-    // !!!!!!!!!!!!!!!!
-    @Disabled
     @Test
-    @Order(1)
     @Tag("ui")
-    @DisplayName("2Проверка кнопки 'Получить консультацию'")
-    void checkingTheGetAdviceButton2() {
-        step("Checking the button for developers", () -> {
-            open(baseUrl);
-            $$(".tn-atom").findBy(text("Получить консультацию")).click();
-            $$(".tn-atom").findBy(text("Получить консультацию"))
-                    .shouldHave(text("Получить консультацию"));
-        });
+    @DisplayName("Проверка в меню ссылки 'Партнеры'")
+    void checkingLinkMenuPartners() {
+        mainPage.openPage()
+                .clickPartnersMenu();
+        partnersPage
+                .checkingPageLoadingPartners();
     }
 
-    // !!!!!!!!!!!!!!!!
-    @Disabled
     @Test
-    @Order(2)
     @Tag("ui")
-    @DisplayName("3Проверка кнопки 'Получить консультацию'")
-    void checkingTheGetAdviceButton3() {
-        step("Checking the button for developers", () -> {
-            open(baseUrl);
-            $$(".tn-atom").findBy(text("Получить консультацию")).click();
-            $$(".tn-atom").findBy(text("Получить консультацию"))
-                    .shouldHave(text("Получить консультацию"));
-        });
+    @DisplayName("Проверка в меню ссылки 'О НАС'")
+    void checkingLinkMenuAbout() {
+        mainPage.openPage()
+                .clickAboutMenu();
+        aboutPage
+                .checkingPageLoadingAbout();
     }
 
-    @Disabled
     @Test
-    @DisplayName("Проверка ссылки 'Блог'")
-    void  checkingTheBlogLink() {
-
+    @Tag("ui")
+    @DisplayName("Проверка в меню ссылки 'Пресс-центр'")
+    void checkingLinkMenuPressCenter() {
+        mainPage.openPage()
+                .clickPressCenterMenu();
+        pressCenterPage
+                .checkingPageLoadingPressCenter();
     }
 
-    @Disabled
     @Test
-    @DisplayName("Проверка ссылки 'Команда'")
-    void checkingTheLinkCommand() {
+    @Tag("ui")
+    @DisplayName("Проверка в меню ссылки 'Карьера'")
+    void checkingLinkMenuCareer() {
+        mainPage.openPage()
+                .clickCareerMenu();
+        careerPage
+                .checkingPageLoadingCareer();
 
     }
 
-    @Disabled
-    @Test
-    @DisplayName("Проверка ссылки 'Контакты'")
-    void checkingTheContactsLink() {
-
-    }
-
-    @Disabled
-    @Test
-    @DisplayName("Проверка ссылки 'Справочный центр'")
-    void checkingTheHelpCenterLink() {
-
-    }
-
-    @Disabled
-    @Test
-    @DisplayName("Проверка ссылки 'Тарифы'")
-    void checkingTheLinkRates() {
-
-    }
-
-    @Disabled
-    @Test
-    @DisplayName("Проверка ссылки 'Правовая информация'")
-    void linkVerificationLegalInformation() {
-
-    }
-
-    @Disabled
-    @Test
-    void successfulRegistrationTest() {
-        step("Open registrations form", () -> {
-            open("/automation-practice-form");
-            $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
-            executeJavaScript("$('#fixedban').remove()");
-            executeJavaScript("$('footer').remove()");
-        });
-
-        step("Fill form", () -> {
-            $("#firstName").setValue("Alex");
-            $("#lastName").setValue("Egorov");
-            $("#userEmail").setValue("alex@egorov.com");
-            $("#genterWrapper").$(byText("Other")).click(); // best
-            $("#userNumber").setValue("1234567890");
-            $("#dateOfBirthInput").click();
-            $(".react-datepicker__month-select").selectOption("July");
-            $(".react-datepicker__year-select").selectOption("2008");
-            $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
-            $("#subjectsInput").setValue("Math").pressEnter();
-            $("#hobbiesWrapper").$(byText("Sports")).click();
-            $("#uploadPicture").uploadFromClasspath("img/1.png");
-            $("#currentAddress").setValue("Some address 1");
-            $("#state").click();
-            $("#stateCity-wrapper").$(byText("NCR")).click();
-            $("#city").click();
-            $("#stateCity-wrapper").$(byText("Delhi")).click();
-            $("#submit").click();
-        });
-
-        step("Check form results", () -> {
-            $(".modal-dialog").should(appear);
-            $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-            $(".table-responsive").shouldHave(text("Alex"), text("Egorov"),
-                    text("alex@egorov.com"), text("1234567890"));
-        });
-
-    }
 }

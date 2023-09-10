@@ -6,16 +6,15 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class ProductsPage {
+public class AboutPage {
 
     private final SelenideElement
-            flagship_products = $$(".row-s-title").findBy(text("Флагманские продукты")),
+            figures_about_us_title = $$(".title title--center").findBy(text("Цифры о нас")),
             products_footer = $$(".page-footer__links__title").findBy(text("Продукты"));
 
-    public void checkingPageLoadingProducts() {
-        flagship_products.shouldBe(visible);
+    public void checkingPageLoadingAbout() {
+        figures_about_us_title.shouldBe(visible);
         products_footer.shouldBe(visible);
     }
-
 
 }

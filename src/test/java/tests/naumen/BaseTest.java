@@ -1,5 +1,7 @@
 package tests.naumen;
 
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelectorMode;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import config.BrowserLocalConfig;
 import config.BrowserRemoteConfig;
@@ -11,20 +13,23 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.net.MalformedURLException;
+import io.qameta.allure.Owner;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.sessionId;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
+
 import static helpers.AllureAttachments.*;
 import static java.lang.System.*;
 
-class BaseTest {
+public class BaseTest {
 
     @BeforeAll
-    static void beforeAll() throws MalformedURLException {
+    static void beforeAll() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
         BrowserLocalConfig browserLocalConfig = ConfigFactory.create(BrowserLocalConfig.class, getProperties());
@@ -66,41 +71,29 @@ class BaseTest {
 
             }});
             browserCapabilities = capabilities;
-
         } else {
             // starting the local driver
-
             browser = browserLocalConfig.getBrowserLocalType();
             browserVersion = browserLocalConfig.getBrowserLocalVersion();
             browserSize = browserLocalConfig.getBrowserLocalSize();
-
         }
-
     }
 
     @AfterEach
     public void afterEach() {
         RemoteDriverConfig remoteDriverConfig = ConfigFactory.create(RemoteDriverConfig.class, getProperties());
-
         if (remoteDriverConfig.isRemoteDriver()) {
             // starting the remote driver
             String sessionId = sessionId().toString(); //getSessionId();
-
-            /* TODO this attachments needs when program run in Jenkins */
             attachScreenshot("Last screenshot");
             attachPageSource();
             browserConsoleLogs();
             attachVideo(sessionId);
-
             closeWebDriver();
-
         } else {
             // starting the local driver
-
             closeWebDriver();
-
         }
-
     }
 
 }
