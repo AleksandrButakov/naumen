@@ -10,7 +10,7 @@ public class CareerPage {
 
     private final SelenideElement
     button_vacancy = $$(".btn").findBy(text("Смотреть вакансии")),
-    button_internship = $$("btn").findBy(text("Выбрать стажировку"));
+    button_internship = $$(".btn").findBy(text("Выбрать стажировку"));
 
     public void checkingPageLoadingCareer() {
         button_vacancy.shouldBe(visible);

@@ -13,4 +13,7 @@ public interface RemoteDriverConfig extends Config {
     @Key("remote.driver")
     String getRemoteDriver();
 
+    @Key("remote.threads.driver")
+    String getRemoteThreadsDriver();
+
 }

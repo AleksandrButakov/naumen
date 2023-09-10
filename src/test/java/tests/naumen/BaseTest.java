@@ -44,6 +44,7 @@ public class BaseTest {
             browser = browserRemoteConfig.getBrowserRemoteType();
             browserVersion = browserRemoteConfig.getBrowserRemoteVersion();
             browserSize = browserRemoteConfig.getBrowserRemoteSize();
+            System.setProperty("threads", remoteDriverConfig.getRemoteThreadsDriver());
 
             remote = remoteDriverConfig.getRemoteDriver();
 
