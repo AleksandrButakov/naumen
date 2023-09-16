@@ -49,3 +49,4 @@ bin/
 /notifications/telegram_message_api_example.txt
 /notifications/telegram_test_notifications_example.txt
 /src/test/resources/chromedriver
+/src/test/java/tests/naumen/SelenoidTests.java
