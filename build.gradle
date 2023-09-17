@@ -7,8 +7,15 @@ repositories {
     mavenCentral()
 }
 
-def allureVersion = "2.24.0",
-    slf4jVersion = "2.0.9"
+def seleniumVersion = "4.12.1",
+    selenideVersion = "6.17.2",
+    webDriverManager = "5.5.3",
+    allureVersion = "2.24.0",
+    slf4jVersion = "2.0.9",
+    junitJupiterVersion = "5.10.0",
+    ownerVersion = "1.0.12",
+    assertjCoreVersion = "3.24.2",
+    restAssuredVersion = "5.3.2"
 
 allure {
     report {
@@ -31,16 +38,17 @@ tasks.withType(JavaCompile).configureEach {
 dependencies {
 
     def implementation = testImplementation(
-            "com.codeborne:selenide:6.17.2",
+            "org.seleniumhq.selenium:selenium-java:$seleniumVersion",
+            "com.codeborne:selenide:$selenideVersion",
+            "io.github.bonigarcia:webdrivermanager:$webDriverManager",
             "io.qameta.allure:allure-selenide:$allureVersion",
-            "org.junit.jupiter:junit-jupiter:5.10.0",
             "org.slf4j:slf4j-simple:$slf4jVersion",
-            "org.junit.jupiter:junit-jupiter-api:5.10.0",
-            "org.seleniumhq.selenium:selenium-java:4.12.1",
-            'io.github.bonigarcia:webdrivermanager:5.5.3',
-            "org.aeonbits.owner:owner:1.0.12",
-            "org.assertj:assertj-core:3.24.2",
-            'io.rest-assured:rest-assured:5.3.2'
+            "org.junit.jupiter:junit-jupiter:$junitJupiterVersion",
+            "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion",
+            "org.aeonbits.owner:owner:$ownerVersion",
+            "org.assertj:assertj-core:$assertjCoreVersion",
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "io.rest-assured:json-schema-validator:$restAssuredVersion"
     )
 }
 
@@ -62,18 +70,11 @@ tasks.withType(Test).configureEach {
 
     testLogging {
         lifecycle {
-//            events "started", "failed"
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
     }
 }
-
-//task ui_test(type: Test) {
-//    useJUnitPlatform {
-//        includeTags("ui")
-//    }
-//}
 
 tasks.register('ui_tests', Test) {
     useJUnitPlatform {
