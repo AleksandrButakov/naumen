@@ -3,9 +3,8 @@ package tests.naumen;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.get;
+import static helpers.CustomAllureListener.*;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.is;
 
 public class MainPageApiTests {
 
@@ -13,6 +12,7 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPage() {
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .get("https://www.naumen.ru/")
                 .then()
@@ -24,6 +24,7 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPageLinkProducts() {
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .get("https://www.naumen.ru/products/")
                 .then()
@@ -35,6 +36,7 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPageLinkSupport() {
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .get("https://www.naumen.ru/support/")
                 .then()
@@ -46,6 +48,7 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPageLinkClients() {
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .get("https://www.naumen.ru/clients/")
                 .then()
@@ -57,6 +60,7 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPageLinkPartners() {
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .get("https://www.naumen.ru/partners/")
                 .then()
@@ -68,6 +72,7 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPageLinkCompany() {
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .get("https://www.naumen.ru/company/")
                 .then()
@@ -79,6 +84,7 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPageLinkNews() {
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .get("https://www.naumen.ru/events/news/")
                 .then()
@@ -90,6 +96,7 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPageLinkCareer() {
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .get("https://www.naumen.ru/career/")
                 .then()
