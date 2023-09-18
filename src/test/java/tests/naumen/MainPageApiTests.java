@@ -1,22 +1,13 @@
 package tests.naumen;
 
-import helpers.CustomAllureListener;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
 import models.lombok.ApiResponseLombokModel;
-import models.lombok.LoginBodyLombokModel;
-import models.pojo.LoginResponsePojoModel;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.devtools.v85.fetch.model.AuthChallengeResponse;
 
 import static helpers.CustomAllureListener.*;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MainPageApiTests {
 
