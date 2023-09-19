@@ -55,3 +55,4 @@ bin/
 /src/test/java/models/pojo/
 /src/test/java/models/lombok/LoginResponseLombokModel.java
 /src/test/java/models/lombok/LoginBodyLombokModel.java
+/src/test/java/specs/LoginSpec.java

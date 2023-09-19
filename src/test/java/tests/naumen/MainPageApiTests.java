@@ -4,10 +4,10 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static helpers.CustomAllureListener.*;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
+import static specs.ApiSpec.*;
 
 public class MainPageApiTests {
 
@@ -15,12 +15,10 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPage() {
         Response response = step("Make get request", () ->
-                given()
-                        .filter(withCustomTemplates())
-                        .log().uri()
-                        .get("https://www.naumen.ru/")
+                given(simpleRequestSpecification)
+                        .get()
                         .then()
-                        .log().status()
+                        .spec(simpleResponseSpecification)
                         .extract().response());
 
         step("Verification statusCode", () ->
@@ -31,12 +29,11 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPageLinkProducts() {
         Response response = step("Make get request", () ->
-                given()
-                        .filter(withCustomTemplates())
-                        .log().uri()
-                        .get("https://www.naumen.ru/products/")
+                given(simpleRequestSpecification)
+                        .basePath("/products/")
+                        .get()
                         .then()
-                        .log().status()
+                        .spec(simpleResponseSpecification)
                         .extract().response());
 
         step("Verification statusCode", () ->
@@ -47,12 +44,11 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPageLinkSupport() {
         Response response = step("Make get request", () ->
-                given()
-                        .filter(withCustomTemplates())
-                        .log().uri()
-                        .get("https://www.naumen.ru/support/")
+                given(simpleRequestSpecification)
+                        .basePath("/support/")
+                        .get()
                         .then()
-                        .log().status()
+                        .spec(simpleResponseSpecification)
                         .extract().response());
 
         step("Verification statusCode", () ->
@@ -63,12 +59,11 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPageLinkClients() {
         Response response = step("Make get request", () ->
-                given()
-                        .filter(withCustomTemplates())
-                        .log().uri()
-                        .get("https://www.naumen.ru/clients/")
+                given(simpleRequestSpecification)
+                        .basePath("/clients/")
+                        .get()
                         .then()
-                        .log().status()
+                        .spec(simpleResponseSpecification)
                         .extract().response());
 
         step("Verification statusCode", () ->
@@ -79,12 +74,11 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPageLinkPartners() {
         Response response = step("Make get request", () ->
-                given()
-                        .filter(withCustomTemplates())
-                        .log().uri()
-                        .get("https://www.naumen.ru/partners/")
+                given(simpleRequestSpecification)
+                        .basePath("/partners/")
+                        .get()
                         .then()
-                        .log().status()
+                        .spec(simpleResponseSpecification)
                         .extract().response());
 
         step("Verification statusCode", () ->
@@ -95,12 +89,11 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPageLinkCompany() {
         Response response = step("Make get request", () ->
-                given()
-                        .filter(withCustomTemplates())
-                        .log().uri()
-                        .get("https://www.naumen.ru/company/")
+                given(simpleRequestSpecification)
+                        .basePath("/company/")
+                        .get()
                         .then()
-                        .log().status()
+                        .spec(simpleResponseSpecification)
                         .extract().response());
 
         step("Verification statusCode", () ->
@@ -111,12 +104,11 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPageLinkNews() {
         Response response = step("Make get request", () ->
-                given()
-                        .filter(withCustomTemplates())
-                        .log().uri()
-                        .get("https://www.naumen.ru/events/news/")
+                given(simpleRequestSpecification)
+                        .basePath("/events/news/")
+                        .get()
                         .then()
-                        .log().status()
+                        .spec(simpleResponseSpecification)
                         .extract().response());
 
         step("Verification statusCode", () ->
@@ -127,13 +119,11 @@ public class MainPageApiTests {
     @Tag("api")
     void checkMainPageLinkCareer() {
         Response response = step("Make get request", () ->
-                given()
-                        .filter(withCustomTemplates())
-                        .log().uri()
-                        .get("https://www.naumen.ru/events/news/")
+                given(simpleRequestSpecification)
+                        .basePath("/events/news/")
+                        .get()
                         .then()
-                        .log().status()
-                        .statusCode(200)
+                        .spec(simpleResponseSpecification)
                         .extract().response());
 
         step("Verification statusCode", () ->
