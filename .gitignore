@@ -56,3 +56,4 @@ bin/
 /src/test/java/models/lombok/LoginResponseLombokModel.java
 /src/test/java/models/lombok/LoginBodyLombokModel.java
 /src/test/java/specs/LoginSpec.java
+/src/test/java/tests/decomposition_ui/CreateTestcaseTests.java

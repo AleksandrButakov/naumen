@@ -16,7 +16,8 @@ def seleniumVersion = "4.12.1",
     junitJupiterVersion = "5.10.0",
     ownerVersion = "1.0.12",
     assertjCoreVersion = "3.24.2",
-    restAssuredVersion = "5.3.2"
+    restAssuredVersion = "5.3.2",
+    javafakerVersion = "1.0.2"
 
 allure {
     report {
@@ -50,7 +51,8 @@ dependencies {
             "org.aeonbits.owner:owner:$ownerVersion",
             "org.assertj:assertj-core:$assertjCoreVersion",
             "io.rest-assured:rest-assured:$restAssuredVersion",
-            "io.rest-assured:json-schema-validator:$restAssuredVersion"
+            "io.rest-assured:json-schema-validator:$restAssuredVersion",
+            "com.github.javafaker:javafaker:$javafakerVersion"
     )
 }
 
