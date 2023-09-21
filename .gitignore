@@ -44,3 +44,16 @@ bin/
 /gradlew.bat
 /gradle/
 /.idea/
+/notifications/telegram_config.json
+/notifications/telegram_config_personal.json
+/notifications/telegram_message_api_example.txt
+/notifications/telegram_test_notifications_example.txt
+/src/test/resources/chromedriver
+/src/test/java/tests/naumen/SelenoidTests.java
+/src/test/resources/schemes/
+/src/test/java/tests/naumen/ReqresInExtendedTests.java
+/src/test/java/models/pojo/
+/src/test/java/models/lombok/LoginResponseLombokModel.java
+/src/test/java/models/lombok/LoginBodyLombokModel.java
+/src/test/java/specs/LoginSpec.java
+/src/test/java/tests/decomposition_ui/CreateTestcaseTests.java
